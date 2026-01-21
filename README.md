@@ -16,104 +16,7 @@ A lightweight document search service that connects to Google Drive, extracts te
 
 ### High-Level System Design
 
-```mermaid
-graph TB
-    subgraph "Data Source"
-        GD[Google Drive<br/>OAuth 2.0<br/>Folder: 1uKz7YN87...]
-    end
-    
-    subgraph "Orchestration Layer"
-        MAIN[Main Script<br/>search_service/main.py<br/>- Full/Incremental Sync<br/>- Deletion Detection]
-    end
-    
-    subgraph "Cloud Abstraction"
-        BC[BaseClient<br/>Abstract Interface]
-        DC[DriveClient<br/>- authenticate&#40;&#41;<br/>- list_files&#40;&#41;<br/>- download_file&#40;&#41;]
-        BC -.implements.-> DC
-    end
-    
-    subgraph "Text Extraction Factory"
-        EF[ExtractorFactory<br/>- is_supported&#40;&#41;<br/>- extract_text&#40;&#41;]
-        BE[BaseExtractor<br/>Abstract Interface]
-        TE[TextExtractor<br/>.txt files]
-        CE[CSVExtractor<br/>.csv files]
-        PE[PDFExtractor<br/>.pdf files]
-        IE[ImageExtractor<br/>.png OCR]
-        
-        BE -.implements.-> TE
-        BE -.implements.-> CE
-        BE -.implements.-> PE
-        BE -.implements.-> IE
-        EF -->|selects| TE
-        EF -->|selects| CE
-        EF -->|selects| PE
-        EF -->|selects| IE
-    end
-    
-    subgraph "Indexing Layer"
-        BI[BaseIndexer<br/>Abstract Interface]
-        EI[ElasticIndexer<br/>- connect&#40;&#41;<br/>- create_index&#40;&#41;<br/>- index_document&#40;&#41;<br/>- search&#40;&#41;<br/>- delete_document&#40;&#41;]
-        BI -.implements.-> EI
-    end
-    
-    subgraph "Storage"
-        ES[(Elasticsearch 8.11<br/>Index: documents<br/>Port: 9200)]
-    end
-    
-    subgraph "API Layer"
-        API[FastAPI Server<br/>search_service/api/app.py<br/>Port: 8000]
-        EP1[GET /<br/>Service Info]
-        EP2[GET /search?q=term<br/>Search Documents]
-        EP3[GET /health<br/>Health Check]
-        EP4[GET /stats<br/>Index Statistics]
-        
-        API --> EP1
-        API --> EP2
-        API --> EP3
-        API --> EP4
-    end
-    
-    subgraph "Client Layer"
-        CLI[CLI Tool<br/>search_service/cli/search_cli.py<br/>- Colored Output<br/>- Query + Limit]
-        WEB[HTTP Clients<br/>curl, Postman, etc.]
-    end
-    
-    subgraph "Configuration"
-        ENV[.env File<br/>- Google OAuth Credentials<br/>- Drive Folder ID<br/>- Elasticsearch Config]
-        CFG[config.py<br/>Pydantic Settings]
-        ENV --> CFG
-    end
-    
-    %% Data Flow
-    GD -->|OAuth Auth| DC
-    DC -->|CloudFile Objects| MAIN
-    MAIN -->|File Content| EF
-    EF -->|Extracted Text| MAIN
-    MAIN -->|Documents| EI
-    EI -->|Index Operations| ES
-    
-    %% Query Flow
-    CLI -->|HTTP GET| API
-    WEB -->|HTTP GET| API
-    API -->|Search Query| EI
-    EI -->|Query Results| ES
-    ES -->|Documents| EI
-    EI -->|Search Results| API
-    API -->|JSON Response| CLI
-    API -->|JSON Response| WEB
-    
-    %% Configuration Flow
-    CFG -.->|Settings| MAIN
-    CFG -.->|Settings| DC
-    CFG -.->|Settings| EI
-    CFG -.->|Settings| API
-    
-    style GD fill:#e1f5ff
-    style ES fill:#fff4e1
-    style API fill:#e8f5e9
-    style CLI fill:#f3e5f5
-    style MAIN fill:#fff9c4
-```
+![Architecture Diagram](architecture.png)
 
 ### Component Details
 
@@ -594,3 +497,11 @@ docker compose down
 - Verify folder ID in `.env` matches your Google Drive folder
 - Ensure files are uploaded to the correct folder
 - Check folder permissions
+
+## License
+
+MIT License
+
+## Authors
+
+Built as part of AI Engineer machine coding assessment.
