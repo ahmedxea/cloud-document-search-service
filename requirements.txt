@@ -1,0 +1,28 @@
+# Core API framework
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+pydantic==2.10.0
+pydantic-settings==2.6.0
+
+# Google Drive integration
+google-auth==2.27.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+google-api-python-client==2.116.0
+
+# Elasticsearch
+elasticsearch==8.11.1
+
+# Text extraction
+pdfminer.six==20221105
+pytesseract==0.3.10  # Optional: for image OCR
+
+# CLI utilities
+requests==2.31.0
+click==8.1.7
+
+# Environment management
+python-dotenv==1.0.0
+
+# Date/time utilities
+python-dateutil==2.8.2

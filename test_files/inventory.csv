@@ -1,0 +1,11 @@
+product_id,product_name,category,price,stock,supplier
+P001,Laptop Pro 15,Electronics,1299.99,45,TechSupply Co
+P002,Wireless Mouse,Electronics,29.99,150,AccessoryHub
+P003,Office Chair Deluxe,Furniture,349.99,30,ComfortSeating Inc
+P004,Mechanical Keyboard,Electronics,89.99,75,TechSupply Co
+P005,Standing Desk,Furniture,599.99,20,OfficeMax Pro
+P006,USB-C Hub,Electronics,45.99,200,AccessoryHub
+P007,Monitor 27 inch,Electronics,399.99,50,DisplayTech Ltd
+P008,Desk Lamp LED,Furniture,39.99,100,LightingWorld
+P009,Ergonomic Mousepad,Electronics,19.99,180,ComfortTech
+P010,Cable Management Kit,Electronics,24.99,120,AccessoryHub

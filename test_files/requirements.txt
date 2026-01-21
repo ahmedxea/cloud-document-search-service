@@ -1,0 +1,64 @@
+PROJECT REQUIREMENTS DOCUMENT
+=============================
+
+Project: Document Search Service
+Version: 1.0
+Date: January 2026
+
+OVERVIEW
+--------
+Build a lightweight document search service that connects to Google Drive,
+extracts text from files, indexes content in Elasticsearch, and provides
+search capabilities through both API and CLI.
+
+FUNCTIONAL REQUIREMENTS
+-----------------------
+
+1. Google Drive Integration
+   - OAuth 2.0 authentication
+   - List files from specified folder
+   - Download file content
+   - Track file metadata and modification times
+
+2. Text Extraction
+   - Support for .txt files (plain text)
+   - Support for .csv files (tabular data)
+   - Support for .pdf files (using pdfminer.six)
+   - Optional: .png files with OCR (pytesseract)
+
+3. Elasticsearch Indexing
+   - Index document content with metadata
+   - Fields: file_id, file_name, file_path, url, mime_type, 
+     extracted_text, updated_time, indexed_time
+   - Support for incremental updates
+
+4. Search API
+   - FastAPI endpoint: GET /search?q=<term>
+   - Return ranked matches with file metadata
+   - JSON response format
+
+5. Command Line Interface
+   - Simple CLI: python search_cli.py "query"
+   - Display formatted search results
+
+TECHNICAL STACK
+---------------
+- Python 3.11+
+- FastAPI + Uvicorn
+- Elasticsearch 8.x
+- Google Drive API
+- Docker Compose for local development
+
+SECURITY
+--------
+- All credentials stored in .env file
+- OAuth tokens securely managed
+- No hardcoded secrets in source code
+
+DELIVERABLES
+------------
+- Modular, object-oriented codebase
+- Complete documentation in README
+- Docker Compose configuration
+- Example .env.example file
+- Unit tests for core functionality

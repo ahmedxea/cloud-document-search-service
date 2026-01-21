@@ -1,0 +1,17 @@
+Document Search Service Test File
+================================
+
+This is a sample text file for testing the Document Search service.
+
+Key Features:
+- Connect to Google Drive
+- Extract text from various file formats
+- Index content in Elasticsearch
+- Provide search API and CLI
+
+Technologies Used:
+Python, FastAPI, Elasticsearch, Google Drive API
+
+Test Keywords: machine learning, artificial intelligence, data science, cloud storage, search engine, document processing, text extraction, indexing, API development, backend engineering
+
+This file should be found when searching for terms like "search", "elasticsearch", "API", or "document".

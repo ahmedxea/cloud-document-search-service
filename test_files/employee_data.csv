@@ -1,0 +1,11 @@
+employee_id,name,department,salary,location,hire_date
+E001,Alice Johnson,Engineering,95000,San Francisco,2024-01-15
+E002,Bob Smith,Marketing,72000,New York,2024-03-20
+E003,Carol Davis,Engineering,88000,Seattle,2023-11-10
+E004,David Wilson,Sales,65000,Chicago,2024-05-01
+E005,Eve Martinez,Engineering,105000,San Francisco,2023-08-15
+E006,Frank Brown,HR,58000,Austin,2024-02-28
+E007,Grace Lee,Engineering,92000,Seattle,2024-04-12
+E008,Henry Taylor,Marketing,68000,Boston,2023-12-05
+E009,Iris Chen,Sales,71000,Miami,2024-06-18
+E010,Jack Anderson,Engineering,98000,San Francisco,2023-09-22
